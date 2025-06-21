@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Author: ASSIP Cohort 2025
+Author: ASSIP Cohort '25
 
-Github: [LINK ONCE PUBLIC] 
+Github: https://github.com/Canyonn06/ASSIP-Astrophysics 
     * Visit the github page for instructions, etc.
 """
 
@@ -452,7 +452,8 @@ def setupEISLines(state, log):
         else:
             print(f"\nNo rest‑line match found for {elem} – "
                   "you’ll need to type one manually.")
-
+            
+        #max is 2 labwl
         ans = input(f"{elem} wavelengths (blank=auto): ")
         state["log"].append(ans)  # adds answer to the log
         if ans:
@@ -705,6 +706,7 @@ def run_fullfit(state, log, win_idx=0, show=True):
     v1, v2, params, bad = fitfull(wd, waves, inten, labwl, z1, z2)
 
     v1 = np.where(np.abs(v1) > 40., np.nan, v1)
+   # TODO: 708: RuntimeWarning: All-NaN slice encountered
     med = np.nanmedian(v1[10:40, 0:40])
     if np.isfinite(med):
         v1 -= med
