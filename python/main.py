@@ -59,6 +59,7 @@ except ImportError: #this pulls the template but it doesn't have data so program
 
 
 # constants for Doppler shift calculations
+#TODO: make this dynamic using abswlart2a.py
 DWL_GLOBAL = -0.001559  # global delta-wavelength offset
 C_KM_S = 300000.0  # speed of light in km/s
 
@@ -543,10 +544,11 @@ def plot_coords(state, log):
     fig_map = plt.figure()
     ax_map = fig_map.add_subplot(111)
     im = ax_map.imshow(avg_img, origin="lower", aspect=1.0 / x_scale)
+    #extent=base_wd.meta['extent_arcsec'] -- Replacement for aspect?? Need advising.
     fig_map.colorbar(im, ax=ax_map, label="Raw Intensity")
     plt.title("Intensity Map")
-    ax_map.set_xlabel("Solar-X (Raster pos [arcsec])")
-    ax_map.set_ylabel("Solar-Y (Slit pos [arcsec])")
+    ax_map.set_xlabel("Solar-X [arcsec]")
+    ax_map.set_ylabel("Solar-Y [arcsec]")
     plt.show(block=False)
     pts = plt.ginput(n=-1, timeout=0)
     if not pts:
