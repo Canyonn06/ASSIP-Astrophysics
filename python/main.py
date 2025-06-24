@@ -25,6 +25,7 @@ import contextlib, io
 _orig_read_cube = eis.read_cube
 
 def read_cube_silent(*args, **kwargs):
+    #silence this becuase it is annoying
     with contextlib.redirect_stdout(io.StringIO()):
         return _orig_read_cube(*args, **kwargs)
 
